@@ -84,6 +84,17 @@ class SinglyLinkedList{
         return currentNode;
     }
 
+    set(val, index){
+        let nodeToUpadte = this.get(index);
+
+        if(nodeToUpadte){
+            nodeToUpadte.value = val;
+            return true;
+        } 
+        return false;
+
+    }
+
     insert(val, index){
 
         if (index < 0 && index > this.length) return false;
@@ -96,8 +107,41 @@ class SinglyLinkedList{
 
         previousNode.next = newNode;
         newNode.next = temp;
-
+        this.length++;
         return true;
+    }
+
+    remove(index){
+        if(index < 0 || index > this.length) return undefined;
+        if(index === this.length - 1) return this.pop();
+        if(index === 0) return this.shift();
+
+        let previousNode = this.get(index - 1);
+        let idxToRemove = previousNode.next;
+        previousNode.next = idxToRemove.next;
+        this.length--;
+        return idxToRemove;
+    }
+
+    reverse(){
+
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let next;
+        let prev = null;
+
+        for(let i = 0; i < this.length; i++){
+           next = node.next;
+           node.next = prev;
+           prev = node;
+           node = next;
+        }
+
+        return this;
+
+
     }
     
 }
@@ -109,7 +153,9 @@ newList.push('Cyuzuzo');
 newList.unshift('Mutabazi');
 newList.push('Muzehe');
 
-console.debug(newList.insert("Boss", 2));
-console.debug(newList.get(2));
+newList.insert("Boss", 2);
+newList.set("Manu", 2)
+newList.get(2);
+newList.reverse();
 
-// console.log(newList);
+console.log(newList);
