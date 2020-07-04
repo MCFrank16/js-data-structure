@@ -43,13 +43,41 @@ class SinglyLinkedList{
         }
         return current;
     }
+
+    shift(){
+        if (!this.head) return undefined;
+        let headToRemove = this.head;
+
+        this.head = headToRemove.next;
+        this.length--;
+
+        if(this.length === 0){
+            this.tail = null;
+        }
+        return headToRemove;
+    }
+
+    unshift(val){
+        let newNode = new Node(val);
+
+        if(!this.head){
+            this.head = newNode;
+            this.tail = newNode;
+        }
+
+        newNode.next = this.head;
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
     
 }
 let newList = new SinglyLinkedList();
 
 newList.push('Frank');
 newList.push('Cyuzuzo');
-newList.push('Mutabazi');
 
-newList.pop()
+newList.unshift('Mutabazi');
+newList.shift();
+
 console.log(newList);
