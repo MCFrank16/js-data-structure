@@ -83,6 +83,22 @@ class SinglyLinkedList{
         }
         return currentNode;
     }
+
+    insert(val, index){
+
+        if (index < 0 && index > this.length) return false;
+        if (index === this.length) return !!this.push(val);
+        if (index === 0) return !!this.unshift(val);
+        
+        let previousNode = this.get(index - 1);
+        let temp = previousNode.next;
+        let newNode = new Node(val);
+
+        previousNode.next = newNode;
+        newNode.next = temp;
+
+        return true;
+    }
     
 }
 let newList = new SinglyLinkedList();
@@ -93,6 +109,7 @@ newList.push('Cyuzuzo');
 newList.unshift('Mutabazi');
 newList.push('Muzehe');
 
-console.debug(newList.get(9));
+console.debug(newList.insert("Boss", 2));
+console.debug(newList.get(2));
 
 // console.log(newList);
