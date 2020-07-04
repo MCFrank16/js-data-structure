@@ -70,6 +70,19 @@ class SinglyLinkedList{
         this.length++;
         return this;
     }
+
+    get(index){
+        if(index < 0 || index >= this.length) return undefined;
+
+        let count = 0;
+        let currentNode = this.head;
+
+        while(count !== index){
+            currentNode = currentNode.next;
+            count++;
+        }
+        return currentNode;
+    }
     
 }
 let newList = new SinglyLinkedList();
@@ -78,6 +91,8 @@ newList.push('Frank');
 newList.push('Cyuzuzo');
 
 newList.unshift('Mutabazi');
-newList.shift();
+newList.push('Muzehe');
 
-console.log(newList);
+console.debug(newList.get(9));
+
+// console.log(newList);
