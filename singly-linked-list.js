@@ -30,7 +30,7 @@ class SinglyLinkedList{
         if (!this.head) return undefined;
         let current = this.head;
         let newTail = current;
-        while(current.next){
+        while(current){
             newTail = current; 
             current = current.next;
         }
@@ -149,13 +149,14 @@ let newList = new SinglyLinkedList();
 
 newList.push('Frank');
 newList.push('Cyuzuzo');
+newList.pop();
 
-newList.unshift('Mutabazi');
-newList.push('Muzehe');
+// newList.unshift('Mutabazi');
+// newList.push('Muzehe');
 
-newList.insert("Boss", 2);
-newList.set("Manu", 2)
-newList.get(2);
-newList.reverse();
+// newList.insert("Boss", 2);
+// newList.set("Manu", 2)
+// newList.get(2);
+// newList.reverse();
 
 console.log(newList);
