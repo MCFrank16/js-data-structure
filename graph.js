@@ -15,6 +15,11 @@ class Graph{
         this.adjacencyList[v2].push(v1);
     }
 
+    readVertex(vertex){
+        if (!this.adjacencyList[vertex]) return undefined;
+        return this.adjacencyList[vertex];
+    }
+
     removeEdge(v1,v2){
         this.adjacencyList[v1].splice(this.adjacencyList[v1].indexOf(v2), 1);
         this.adjacencyList[v2].splice(this.adjacencyList[v2].indexOf(v1), 1);
@@ -71,6 +76,30 @@ class Graph{
         return result;
 
     }
+    
+    // this is a right to left implementation
+    // for the ltr, you have to remove slice and reverse methods
+    BFS(startVertex){
+        const queue = [startVertex];
+        const result = [];
+        const visitedVertex = {};
+        visitedVertex[startVertex] = 'visited';
+        let currVertex;
+
+        while(queue.length){
+            currVertex = queue.shift();
+            result.push(currVertex);
+
+            this.adjacencyList[currVertex].slice().reverse().forEach(neighbor => {
+                if(!visitedVertex[neighbor]){
+                    visitedVertex[neighbor] = 'visited';
+                    queue.push(neighbor);
+                }
+            })
+        }
+
+        return result;
+    }
 }
 
 // let rwandaAir = new Graph();
@@ -109,4 +138,6 @@ g.addEdge("C","E")
 g.addEdge("D","E")
 g.addEdge("D","F")
 g.addEdge("E","F")
-console.log(g.DFSIterative("A"));
+
+// console.log(g.DFSIterative("F"));
+console.log(g.BFS('A'));
