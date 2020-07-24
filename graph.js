@@ -28,23 +28,69 @@ class Graph{
 
         delete this.adjacencyList[vertex];
     }
+
+    DFSRecursive(startVertex){
+        const result = [];
+        const visitedVertex = {};
+
+        const adjacencyList = this.adjacencyList;
+
+        (function recurse (vertex) {
+           if (!vertex) return null;
+           visitedVertex[vertex] = 'visited';
+            result.push(vertex);
+
+            adjacencyList[vertex].forEach(element => {
+            if (!visitedVertex[element]) recurse(element)
+            });
+        })(startVertex);
+
+        return result;
+    }
+
+    // DFSIterative(startVertex){
+    //     let stack = [];
+    //     stack.push(startVertex);
+
+    //     while ()
+
+    // }
 }
 
-let rwandaAir = new Graph();
+// let rwandaAir = new Graph();
 
-rwandaAir.addVertex('Kigali');
-rwandaAir.addVertex('Guangzhou');
-rwandaAir.addVertex('Mumbai');
-rwandaAir.addVertex('Dubai');
-rwandaAir.addVertex('Harare');
+// rwandaAir.addVertex('Kigali');
+// rwandaAir.addVertex('Guangzhou');
+// rwandaAir.addVertex('Mumbai');
+// rwandaAir.addVertex('Dubai');
+// rwandaAir.addVertex('Harare');
 
-rwandaAir.addEdge('Kigali', 'Guangzhou');
-rwandaAir.addEdge('Mumbai', 'Guangzhou');
-rwandaAir.addEdge('Dubai', 'Kigali');
-rwandaAir.addEdge('Harare', 'Dubai');
-rwandaAir.addEdge('Harare', 'Kigali');
+// rwandaAir.addEdge('Kigali', 'Guangzhou');
+// rwandaAir.addEdge('Mumbai', 'Guangzhou');
+// rwandaAir.addEdge('Dubai', 'Kigali');
+// rwandaAir.addEdge('Harare', 'Dubai');
+// rwandaAir.addEdge('Harare', 'Kigali');
 
-rwandaAir.removeVertex('Kigali');
+// rwandaAir.DFSRecursive('Kigali');
 // rwandaAir.removeEdge('Harare', 'Kigali');
 
-console.log(rwandaAir);
+// console.log(rwandaAir);
+
+let g = new Graph();
+
+g.addVertex("A")
+g.addVertex("B")
+g.addVertex("C")
+g.addVertex("D")
+g.addVertex("E")
+g.addVertex("F")
+
+
+g.addEdge("A", "B")
+g.addEdge("A", "C")
+g.addEdge("B","D")
+g.addEdge("C","E")
+g.addEdge("D","E")
+g.addEdge("D","F")
+g.addEdge("E","F")
+console.log(g.DFSRecursive("A"));
