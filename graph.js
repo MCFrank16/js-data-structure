@@ -48,13 +48,29 @@ class Graph{
         return result;
     }
 
-    // DFSIterative(startVertex){
-    //     let stack = [];
-    //     stack.push(startVertex);
+    DFSIterative(startVertex){
+        let stack = [];
+        let result = [];
+        let visitedVertex = {};
+        let currentVertex;
 
-    //     while ()
+        stack.push(startVertex);
+        visitedVertex[startVertex] = 'visited';
 
-    // }
+        while (stack.length) {
+            currentVertex = stack.pop(startVertex);
+            result.push(currentVertex);
+
+            this.adjacencyList[currentVertex].forEach(el => {
+                if(!visitedVertex[el]){
+                    visitedVertex[el] = 'visited';
+                    stack.push(el);
+                }
+            })
+        }
+        return result;
+
+    }
 }
 
 // let rwandaAir = new Graph();
@@ -93,4 +109,4 @@ g.addEdge("C","E")
 g.addEdge("D","E")
 g.addEdge("D","F")
 g.addEdge("E","F")
-console.log(g.DFSRecursive("A"));
+console.log(g.DFSIterative("A"));
