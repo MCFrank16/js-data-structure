@@ -4,36 +4,40 @@
 
 // space complexity: O(log n)
 
-// const swap = (arr, i, j) => [arr[i], arr[j]] = [arr[j], arr[i]];
 
-// function pivotHelper(arr, start = 0, end= arr.length - 1){
-//     let pivot = arr[start];
-//     let swapIndex = start;
+// iterative solution
+const swap = (arr, i, j) => [arr[i], arr[j]] = [arr[j], arr[i]];
 
-//     for(let i = start + 1; i < arr.length; i++){
-//         if(pivot > arr[i]){
-//             swapIndex++;
-//             swap(arr, swapIndex, i);
-//         }
-//     }
+function pivotHelper(arr, start = 0, end= arr.length - 1){
+    let pivot = arr[start];
+    let swapIndex = start;
 
-//     swap(arr, swapIndex, start);
-//     return swapIndex;
-// }
+    for(let i = start + 1; i < arr.length; i++){
+        if(pivot > arr[i]){
+            swapIndex++;
+            swap(arr, swapIndex, i);
+        }
+    }
 
-// function quickSort(arr, left = 0, right = arr.length - 1){
+    swap(arr, swapIndex, start);
+    return swapIndex;
+}
+
+function quickSort(arr, left = 0, right = arr.length - 1){
     
-//     if(left < right){
-//         let pivotIndex = pivotHelper(arr, left, right);
-//         // left recursion
-//         quickSort(arr, left, pivotIndex - 1);
-//         // right recursion
-//         quickSort(arr, pivotIndex + 1, right);
-//     }
+    if(left < right){
+        let pivotIndex = pivotHelper(arr, left, right);
+        // left recursion
+        quickSort(arr, left, pivotIndex - 1);
+        // right recursion
+        quickSort(arr, pivotIndex + 1, right);
+    }
 
-//     return arr;
-// }
+    return arr;
+}
 
+
+// another solution
 function quickSort(arr){
     if (arr.length <= 1) return arr;
 
