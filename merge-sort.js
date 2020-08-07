@@ -38,3 +38,4 @@ function mergeSort(arr){
 
 console.log(mergeSort([1,10,50,2,14,19,100]));
 console.log(mergeSort([100,120,25,26,27,28,29,30]))
+console.log(mergeSort([8,4,2,1]));
