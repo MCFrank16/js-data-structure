@@ -1,6 +1,6 @@
 // best case scenario: O(n log n)
 // average case scenario: O(n log n)
-// worst case scenarion: O(n * n)
+// worst case scenarion: O(n^2)
 
 // space complexity: O(log n)
 
@@ -36,8 +36,10 @@ function quickSort(arr, left = 0, right = arr.length - 1){
     return arr;
 }
 
-
 // another solution
+// this solution is the best one compared to the one above
+// based on the fact that for every input array of length n,
+// the average running time of quicksort is O(n log n)
 function quickSort(arr){
     if (arr.length <= 1) return arr;
 
@@ -47,7 +49,7 @@ function quickSort(arr){
 
     arr.splice(pivot, 1);
 
-    arr.forEach((el, i, arr) => {
+    arr.forEach((el) => {
         el < val ? less.push(el) : more.push(el);
     });
 
